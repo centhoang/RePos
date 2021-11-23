@@ -20,8 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
 	[Header("-- ReverPos Skill --")]
 	[SerializeField] private float recordTime = 5f;
-	[SerializeField] private float timeBetweenEachCloneDrawn = 1f;
-	[SerializeField] private GameObject cloneGhostPrefab;
 
 	// Other movement's variables
     [HideInInspector] public bool isGrounded = true;                            // Whether or not the player is grounded.
@@ -43,10 +41,8 @@ public class PlayerMovement : MonoBehaviour
 
 	// Reverse position skill components
 	private bool isRewinding = false;
-	private List<Vector3> PointInTimes;
-	private List<GameObject> GhostCloneList;
-	private float CloneGhostTimer = 0f;
-	private int CloneInOrder = 0;
+	private List<PointInTime> PointInTimes;
+	private LineRenderer lineRenderer; 
 
 	// For Aniamtion
 	private Animator playerAnimator;
@@ -55,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRigidbody2D = GetComponent<Rigidbody2D>();
 		playerAnimator = GetComponent<Animator>();
+		lineRenderer = GetComponent<LineRenderer>();
     }
 
     // Start is called before the first frame update
@@ -62,18 +59,7 @@ public class PlayerMovement : MonoBehaviour
     {
         originRunSpeed = runSpeed;
 
-		PointInTimes = new List<Vector3>();
-
-		CloneGhostTimer = timeBetweenEachCloneDrawn;
-
-		GameObject obj;
-		GhostCloneList = new List<GameObject>();
-		for (int i = 0; i < Mathf.RoundToInt(recordTime/timeBetweenEachCloneDrawn); i++)
-		{
-			obj = Instantiate(cloneGhostPrefab);
-			obj.SetActive(false);
-			GhostCloneList.Add(obj);
-		}
+		PointInTimes = new List<PointInTime>();
     }
 
     // Update is called once per frame
@@ -179,26 +165,12 @@ public class PlayerMovement : MonoBehaviour
 			Record();
     }
 
-	private void SpawnGhost (Vector3 position, Vector3 scale, Sprite sprite)
+	private void RenderLine()
 	{
-		GameObject cloneToSpawn = GhostCloneList[CloneInOrder];
-		if (cloneToSpawn)
+		lineRenderer.positionCount = PointInTimes.Count;
+		for (int i = 0; i < lineRenderer.positionCount; i++)
 		{
-			cloneToSpawn.GetComponent<SpriteRenderer>().sprite = sprite;
-			cloneToSpawn.transform.position = position;
-			cloneToSpawn.transform.localScale = scale;
-			cloneToSpawn.transform.rotation = Quaternion.identity;
-			cloneToSpawn.SetActive(true);
-
-			CloneInOrder++;
-			if (CloneInOrder > GhostCloneList.Count - 1)
-			{
-				CloneInOrder = 0;
-			}
-		}
-		else
-		{
-			Debug.Log("cloneToSpawn is null to clone !!!!!");
+			lineRenderer.SetPosition(i, PointInTimes[i].position);
 		}
 	}
 
@@ -206,22 +178,15 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (PointInTimes.Count > 0)
 		{
-            transform.position = PointInTimes[0];
+            transform.position = PointInTimes[0].position;
+			transform.localScale = PointInTimes[0].scale;
 			playerRigidbody2D.velocity = Vector3.zero;
-			PointInTimes.RemoveAt(0);
 
-			CloneGhostTimer += Time.fixedDeltaTime;
-			if (CloneGhostTimer >= timeBetweenEachCloneDrawn)
-			{
-				CloneInOrder --;
-				if (CloneInOrder < 0)
-				{
-					CloneInOrder = GhostCloneList.Count - 1;
-				}
-				GameObject cloneToDelete = GhostCloneList[CloneInOrder];
-				cloneToDelete.SetActive(false);
-				CloneGhostTimer = 0f;
-			}
+			GetComponent<SpriteRenderer>().sprite = PointInTimes[0].sprite;
+
+			PointInTimes.RemoveAt(0);
+			
+			RenderLine();
 		} 
 		else
 		{
@@ -235,15 +200,10 @@ public class PlayerMovement : MonoBehaviour
 		{
 			PointInTimes.RemoveAt(PointInTimes.Count - 1);
 		}
+		PointInTimes.Insert(0, new PointInTime(transform.position, GetComponent<SpriteRenderer>().sprite, transform.localScale));
+		Debug.Log(PointInTimes[0].position);
 
-		PointInTimes.Insert(0, transform.position);
-		
-		CloneGhostTimer -= Time.fixedDeltaTime;
-		if (CloneGhostTimer <= 0)
-		{
-			SpawnGhost(transform.position, transform.localScale, GetComponent<SpriteRenderer>().sprite);
-			CloneGhostTimer = timeBetweenEachCloneDrawn;
-		}
+		RenderLine();
 	}
 
 	void StartRewind ()
@@ -251,6 +211,8 @@ public class PlayerMovement : MonoBehaviour
 		isRewinding = true;
 		playerRigidbody2D.isKinematic = true;
 		GetComponent<CapsuleCollider2D>().enabled = false;
+
+		GetComponent<Animator>().enabled = false;
 	}
 
 	void StopRewind ()
@@ -258,6 +220,16 @@ public class PlayerMovement : MonoBehaviour
 		isRewinding = false;
 		playerRigidbody2D.isKinematic = false;
 		GetComponent<CapsuleCollider2D>().enabled = true;
+
+		GetComponent<Animator>().enabled = true;
+		if (transform.localScale.x > 0)
+		{
+			FacingRight = true;
+		}
+		else
+		{
+			FacingRight = false;
+		}
 	}
 
     public void Move(float move, bool jump, bool prePushPull)
