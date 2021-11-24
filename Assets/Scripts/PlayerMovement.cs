@@ -32,17 +32,20 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 m_Velocity = Vector3.zero;
 
 	// Grab's variables
-	private bool prePushPull = false;
 	private bool grabbed = false;
 	private bool grabbedFacingRight = true;
 	private bool grabbedFlag = false;
 	private GameObject box;
 	private RaycastHit2D hit;
 
-	// Reverse position skill components
+	// Reverse position skill variables
 	private bool isRewinding = false;
 	private List<PointInTime> PointInTimes;
 	private LineRenderer lineRenderer; 
+
+	// Dying variable
+	private bool isDying = false;
+	private bool disableInput = false;
 
 	// For Aniamtion
 	private Animator playerAnimator;
@@ -65,104 +68,109 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		// Input skill
-		if (Input.GetButtonDown("ReversePos Skill"))
+		if (!disableInput)
 		{
-			StartRewind();
-		}
-		else if (Input.GetButtonUp("ReversePos Skill"))
-		{
-			StopRewind();
-		}
-
-		// Input push-pull
-		if (isGrounded)
-		{
-			if (Input.GetButtonDown("Push-Pull"))
+			// Input skill
+			if (Input.GetButtonDown("ReversePos Skill"))
 			{
-				prePushPull = true;
+				StartRewind();
+			}
+			else if (Input.GetButtonUp("ReversePos Skill"))
+			{
+				StopRewind();
+			}
 
-				hit = Physics2D.Raycast (transform.position, Vector2.right * transform.localScale.x, m_GrabDistance, m_BoxMask);
-				
-				try
+			// Input push-pull
+			if (isGrounded)
+			{
+				if (Input.GetButtonDown("Push-Pull"))
 				{
-					if (hit.collider.gameObject != null && hit.collider.gameObject.tag == "Grabbable")
+					hit = Physics2D.Raycast (transform.position, Vector2.right * transform.localScale.x, m_GrabDistance, m_BoxMask);
+					
+					try
 					{
-						box = hit.collider.gameObject;
-						box.GetComponent<FixedJoint2D>().enabled= true;
-						box.GetComponent<FixedJoint2D>().connectedBody= this.GetComponent<Rigidbody2D>();
-						grabbed = true;
+						if (hit.collider.gameObject != null && hit.collider.gameObject.tag == "Grabbable")
+						{
+							box = hit.collider.gameObject;
+							box.GetComponent<FixedJoint2D>().enabled= true;
+							box.GetComponent<FixedJoint2D>().connectedBody= this.GetComponent<Rigidbody2D>();
+							grabbed = true;
+						}
+					}
+					catch {}	
+				}
+				else if (Input.GetButtonUp("Push-Pull"))
+				{
+					try 
+					{
+						box.GetComponent<FixedJoint2D>().enabled = false;
+					}
+					catch {}
+					grabbedFlag = false;
+					grabbed = false;
+				}
+
+				if (grabbed)
+				{
+					if (!grabbedFlag)
+					{
+						grabbedFlag = true;
+						grabbedFacingRight = FacingRight;
 					}
 				}
-				catch {}	
 			}
-			else if (Input.GetButtonUp("Push-Pull"))
+			else
 			{
 				try 
 				{
 					box.GetComponent<FixedJoint2D>().enabled = false;
 				}
 				catch {}
-				prePushPull = false;
 				grabbedFlag = false;
 				grabbed = false;
 			}
 
+			// Input horizontal movement
 			if (grabbed)
 			{
-				if (!grabbedFlag)
+				runSpeed = m_SpeedScaleDown * originRunSpeed;
+			}
+			else
+			{
+				runSpeed = originRunSpeed;
+			}
+
+			horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+
+			// Input vertical movement
+			if (!grabbed)
+			{
+				if (Input.GetButtonDown("Jump"))
 				{
-					grabbedFlag = true;
-					grabbedFacingRight = FacingRight;
+					jump = true;
 				}
 			}
 		}
-		else
-		{
-			try 
-			{
-				box.GetComponent<FixedJoint2D>().enabled = false;
-			}
-			catch {}
-			prePushPull = false;
-			grabbedFlag = false;
-			grabbed = false;
-		}
-
-		// Input horizontal movement
-		if (grabbed)
-		{
-			runSpeed = m_SpeedScaleDown * originRunSpeed;
-		}
-		else
-		{
-			runSpeed = originRunSpeed;
-		}
-
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-
-		// Input vertical movement
-		if (!grabbed)
-		{
-			if (Input.GetButtonDown("Jump"))
-			{
-				jump = true;
-			}
-		}
-
 		// At last, check animation for current movement
 		CheckAnimation(horizontalMove);
     }
 
     void FixedUpdate() 
     {
-        Move(horizontalMove * Time.fixedDeltaTime, jump, prePushPull);
-		jump = false;
+		if (!isDying)
+		{
+			Move(horizontalMove * Time.fixedDeltaTime, jump);
+			jump = false;
 
-		if (isRewinding)
-			Rewind();
+			if (isRewinding)
+				Rewind();
+			else
+				Record();
+		}
 		else
-			Record();
+		{
+			playerRigidbody2D.velocity = Vector3.zero;
+		}
     }
 
 	private void RenderLine()
@@ -201,7 +209,6 @@ public class PlayerMovement : MonoBehaviour
 			PointInTimes.RemoveAt(PointInTimes.Count - 1);
 		}
 		PointInTimes.Insert(0, new PointInTime(transform.position, GetComponent<SpriteRenderer>().sprite, transform.localScale));
-		Debug.Log(PointInTimes[0].position);
 
 		RenderLine();
 	}
@@ -232,7 +239,22 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
-    public void Move(float move, bool jump, bool prePushPull)
+	private void OnCollisionEnter2D(Collision2D collision) 
+	{
+		if (collision.gameObject.CompareTag("Dangerous"))
+		{
+			isDying = true;
+			disableInput = true;
+		}	
+	}
+
+	private void Respawn()
+	{
+		Destroy(gameObject);
+		LevelManager.instance.Respawn();
+	}
+
+    public void Move(float move, bool jump)
 	{
 		// Only control the player if grounded or airControl is turned on
 		if (isGrounded || m_AirControl)
@@ -286,22 +308,27 @@ public class PlayerMovement : MonoBehaviour
 		Gizmos.DrawLine(transform.position, (Vector2)transform.position + Vector2.right * transform.localScale.x * m_GrabDistance);
 	}
 
-	private void SetAnimatorParameters (float pushpushDirec, bool isJumping, bool isWalking, bool isPushingPulling, bool isPrePushingPulling)
+	private void SetAnimatorParameters (float pushpushDirec, bool isJumping, bool isWalking, bool isPushingPulling, bool isPrePushingPulling, bool isDying)
 	{
 		playerAnimator.SetFloat("Push-PullDirection",pushpushDirec);
 		playerAnimator.SetBool("isJumping", isJumping);
 		playerAnimator.SetBool("isWalking", isWalking);
 		playerAnimator.SetBool("isPushing-Pulling", isPushingPulling);
 		playerAnimator.SetBool("isPrePushing-Pulling", isPrePushingPulling);
+		playerAnimator.SetBool("isDying", isDying);
 	}
 
 	private void CheckAnimation(float move)
 	{
 		playerAnimator.SetFloat("Movement", Mathf.Abs(move));
 
-		if (isGrounded)
+		if (isDying)
 		{
-			if (prePushPull && grabbed)
+			SetAnimatorParameters(1f,false,false,false,false,true);
+		}
+		else if (isGrounded)
+		{
+			if (grabbed)
 			{
 				if (Mathf.Abs(move) > 0)
 				{
@@ -309,42 +336,42 @@ public class PlayerMovement : MonoBehaviour
 					{
 						if (grabbedFacingRight)
 						{
-							SetAnimatorParameters(1f,false,false,true,false);
+							SetAnimatorParameters(1f,false,false,true,false,false);
 						}
 						else
 						{
-							SetAnimatorParameters(-1f,false,false,true,false);
+							SetAnimatorParameters(-1f,false,false,true,false,false);
 						}
 					}
 					else
 					{
 						if (grabbedFacingRight)
 						{
-							SetAnimatorParameters(-1f,false,false,true,false);
+							SetAnimatorParameters(-1f,false,false,true,false,false);
 						}
 						else
 						{
-							SetAnimatorParameters(1f,false,false,true,false);
+							SetAnimatorParameters(1f,false,false,true,false,false);
 						}
 					}
 				}
 				else
 				{	
-					SetAnimatorParameters(1f,false,false,false,true);
+					SetAnimatorParameters(1f,false,false,false,true,false);
 				}
 			}
 			else if (Mathf.Abs(move) > 0)
 			{
-				SetAnimatorParameters(1f,false,true,false,false);
+				SetAnimatorParameters(1f,false,true,false,false,false);
 			}
 			else
 			{
-				SetAnimatorParameters(1f,false,false,false,false);
+				SetAnimatorParameters(1f,false,false,false,false,false);
 			}
 		}
 		else if (!isGrounded)
 		{
-			SetAnimatorParameters(1f,true,false,false,false);
+			SetAnimatorParameters(1f,true,false,false,false,false);
 		}
 	}
 }
