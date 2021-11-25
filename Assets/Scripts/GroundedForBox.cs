@@ -2,45 +2,30 @@ using UnityEngine;
 
 public class GroundedForBox : MonoBehaviour
 {
-    [SerializeField] float m_MassUntouched = 10f;
-    [SerializeField] float m_MassTouched = 1.5f;
     GameObject Box;
-    private bool FixedJointedFlag = false;
+    public static GroundedForBox instance;
+    public bool isGrounded = false;
 
     private void Awake() 
     {
-        Box = gameObject.transform.parent.gameObject;    
-    }
-
-    private void Update() 
-    {
-        if (Box.GetComponent<FixedJoint2D>().enabled == false)
-        {
-            Box.GetComponent<Rigidbody2D>().mass = m_MassUntouched;
-        }
-        else
-        {
-            Box.GetComponent<Rigidbody2D>().mass = m_MassTouched;
-        }
+        Box = gameObject.transform.parent.gameObject;
+        instance = this;  
     }
 
     private void OnTriggerStay2D(Collider2D collider) 
     {
-        if (!FixedJointedFlag)
+        if (collider.gameObject.CompareTag("Ground"))
         {
-            if(collider.IsTouchingLayers(3) && Box.GetComponent<FixedJoint2D>().enabled == true)
-            {
-                FixedJointedFlag = true;
-            }
+            isGrounded = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collider) 
-    {
-        if (FixedJointedFlag)
+    {    
+        if (collider.gameObject.CompareTag("Ground"))
         {
+            isGrounded = false;
             Box.GetComponent<FixedJoint2D>().enabled = false;
-            FixedJointedFlag = false;
         }
     }
 }

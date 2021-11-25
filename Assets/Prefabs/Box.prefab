@@ -70,8 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965f4a1e9e1bf3a44a6fa90352f32dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MassUntouched: 10
-  m_MassTouched: 0.7
+  isGrounded: 0
 --- !u!1 &5964127827876265203
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,6 +84,7 @@ GameObject:
   - component: {fileID: 5964127827876265201}
   - component: {fileID: 5964127827876265200}
   - component: {fileID: 5964127827876265204}
+  - component: {fileID: 1248310663}
   m_Layer: 0
   m_Name: Box
   m_TagString: Grabbable
@@ -196,7 +196,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1.5
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
@@ -223,3 +223,15 @@ FixedJoint2D:
   m_ConnectedAnchor: {x: -1.49, y: 3.49}
   m_DampingRatio: 0
   m_Frequency: 0
+--- !u!114 &1248310663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5964127827876265203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955e65b39978a7148ab47afee5efd154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

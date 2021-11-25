@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54414431e2e31df40946af3c7d344746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPoint: {fileID: 0}
+  respawnPoint: {fileID: 6805698921758791057, guid: 50d6d967a44cbe94a964a323d29a9e38, type: 3}
   playerPrefab: {fileID: 8452608080885030421, guid: 38e2caf90878d714db12d4586a1a8a66, type: 3}
-  cam: {fileID: 0}
+  cam: {fileID: 2418758503567354026, guid: 4020b18af02b79948b7793ec11a0b6e6, type: 3}
