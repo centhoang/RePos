@@ -4,9 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Grabbable
   - Dangerous
   - Ground
+  - Box
+  - Gate
+  - Button
+  - Grabbable
   layers:
   - Default
   - TransparentFX
@@ -52,6 +55,9 @@ TagManager:
     locked: 0
   - name: Platform
     uniqueID: 1029027261
+    locked: 0
+  - name: Button
+    uniqueID: 401032663
     locked: 0
   - name: Player
     uniqueID: 2085509585

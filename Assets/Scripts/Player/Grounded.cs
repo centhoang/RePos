@@ -14,16 +14,17 @@ public class Grounded : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collider) 
     {
-        if(collider.IsTouchingLayers(3))
+        if(collider.gameObject.CompareTag("Ground") || collider.gameObject.CompareTag("Box"))
         {
             Player.GetComponent<PlayerMovement>().isGrounded = true;
-            //Debug.Log("Setting isGrounded to TRUE: " + Player.GetComponent<PlayerMovement>().isGrounded);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collider) 
     {
-        Player.GetComponent<PlayerMovement>().isGrounded = false;
-        //Debug.Log("Setting isGrounded to FALSE: " + Player.GetComponent<PlayerMovement>().isGrounded);
+        if(collider.gameObject.CompareTag("Ground") || collider.gameObject.CompareTag("Box"))
+        {
+            Player.GetComponent<PlayerMovement>().isGrounded = false;
+        }
     }
 }

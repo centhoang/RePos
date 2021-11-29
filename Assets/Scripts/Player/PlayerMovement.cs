@@ -89,11 +89,11 @@ public class PlayerMovement : MonoBehaviour
 					
 					try
 					{
-						if (hit.collider.gameObject != null && hit.collider.gameObject.tag == "Grabbable")
+						if (hit.collider.gameObject != null && hit.collider.gameObject.tag == "Box")
 						{
 							box = hit.collider.gameObject;
 							box.GetComponent<FixedJoint2D>().enabled= true;
-							box.GetComponent<FixedJoint2D>().connectedBody= this.GetComponent<Rigidbody2D>();
+							box.GetComponent<FixedJoint2D>().connectedBody= playerRigidbody2D;
 							grabbed = true;
 						}
 					}
@@ -170,6 +170,7 @@ public class PlayerMovement : MonoBehaviour
 		else
 		{
 			playerRigidbody2D.velocity = Vector3.zero;
+			playerRigidbody2D.isKinematic = true;
 		}
     }
 
@@ -217,18 +218,18 @@ public class PlayerMovement : MonoBehaviour
 	{
 		isRewinding = true;
 		playerRigidbody2D.isKinematic = true;
-		GetComponent<CapsuleCollider2D>().enabled = false;
+		GetComponent<CapsuleCollider2D>().isTrigger = true;
 
-		GetComponent<Animator>().enabled = false;
+		playerAnimator.enabled = false;
 	}
 
 	void StopRewind ()
 	{
 		isRewinding = false;
 		playerRigidbody2D.isKinematic = false;
-		GetComponent<CapsuleCollider2D>().enabled = true;
+		GetComponent<CapsuleCollider2D>().isTrigger = false;
 
-		GetComponent<Animator>().enabled = true;
+		playerAnimator.enabled = true;
 		if (transform.localScale.x > 0)
 		{
 			FacingRight = true;
@@ -244,6 +245,7 @@ public class PlayerMovement : MonoBehaviour
 		if (collider.gameObject.CompareTag("Dangerous"))
 		{
 			isDying = true;
+			playerAnimator.enabled = true;
 			disableInput = true;
 		}	
 	}

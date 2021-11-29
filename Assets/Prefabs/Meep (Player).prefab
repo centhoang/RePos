@@ -164,7 +164,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2085509585
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ba72f11655002f0418589ab47fc29ea9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -226,16 +226,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae81149a4bfbb1244903cd1c7388f2d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 30
+  runSpeed: 25
   m_MovementSmoothing: 0.05
   m_AirControl: 1
-  m_JumpForce: 600
+  m_JumpForce: 570
   m_StillGroundedDelay: 0.1
   m_GrabDistance: 0.3
   m_BoxMask:
     serializedVersion: 2
     m_Bits: 55
-  m_SpeedScaleDown: 0.5
+  m_SpeedScaleDown: 0.8
   recordTime: 5
   isGrounded: 1
 --- !u!120 &2766445088230449646
@@ -276,8 +276,8 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2085509585
-  m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingLayer: 5
+  m_SortingOrder: -1
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
