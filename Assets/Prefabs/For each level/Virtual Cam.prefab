@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2418758503567354027}
   - component: {fileID: 2418758503567354026}
+  - component: {fileID: 2080551651764121293}
   m_Layer: 0
   m_Name: Virtual Cam
   m_TagString: Untagged
@@ -51,10 +52,10 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 8452608080885030419, guid: 38e2caf90878d714db12d4586a1a8a66, type: 3}
   m_Lens:
     FieldOfView: 28.465391
-    OrthographicSize: 3.88
+    OrthographicSize: 5.03
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -67,6 +68,23 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 2418758503999008675}
+--- !u!114 &2080551651764121293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2418758503567354029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ConfineMode: 0
+  m_BoundingVolume: {fileID: 0}
+  m_BoundingShape2D: {fileID: 2396837258072293519, guid: f13d133d0421bae4b938046f12a75883, type: 3}
+  m_ConfineScreenEdges: 1
+  m_Damping: 0
 --- !u!1 &2418758503999008674
 GameObject:
   m_ObjectHideFlags: 0

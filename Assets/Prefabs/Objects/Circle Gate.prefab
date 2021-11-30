@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.37452197}
+  m_Offset: {x: 0, y: -0.4662546}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.59367704, y: 0.8290391}
+  m_Size: {x: 0.7454885, y: 1.0272434}
   m_EdgeRadius: 0
 --- !u!1 &5776266978455577922
 GameObject:
@@ -69,6 +69,7 @@ GameObject:
   - component: {fileID: 4995251184636578913}
   - component: {fileID: 6408475536751036250}
   - component: {fileID: 860111650}
+  - component: {fileID: 1534838905290429632}
   m_Layer: 0
   m_Name: Circle Gate
   m_TagString: Gate
@@ -174,16 +175,29 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.39059073}
+  m_Offset: {x: 0, y: 0.49131334}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.78125, y: 1.578125}
+    oldSize: {x: 0.98039216, y: 1.9803921}
     newSize: {x: 0.78125, y: 1.578125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.78125, y: 0.7967912}
+  m_Size: {x: 0.97745365, y: 0.995003}
   m_EdgeRadius: 0
+--- !u!114 &1534838905290429632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5776266978455577922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c775629009108a548a104ab237c145a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPressed: 0

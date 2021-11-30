@@ -16,13 +16,13 @@ public class GateControl : MonoBehaviour
         if (buttonPressed)
         {
             gateAnimator.SetBool("buttonPressed", true);
-            gateAnimator.SetFloat("openOrClose", 1f);
+            //gateAnimator.SetFloat("openOrClose", 1f);
         }
 
         if (!buttonPressed)
         {
            gateAnimator.SetBool("buttonPressed", false); 
-           gateAnimator.SetFloat("openOrClose", -1f);
+           //gateAnimator.SetFloat("openOrClose", -1f);
         }
     }
 }

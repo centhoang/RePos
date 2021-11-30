@@ -247,7 +247,12 @@ public class PlayerMovement : MonoBehaviour
 			isDying = true;
 			playerAnimator.enabled = true;
 			disableInput = true;
-		}	
+		}
+
+		if (collider.gameObject.CompareTag("CircleKey"))
+		{
+			collider.gameObject.SetActive(false);
+		}
 	}
 
 	private void Respawn()

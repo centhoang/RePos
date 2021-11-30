@@ -17,6 +17,14 @@ public class LevelManager : MonoBehaviour
         public GameObject gate;
     }
     [SerializeField] private List<ButtonGatePair> buttonGatePairs;
+
+    [System.Serializable]
+    public class KeyGatePair 
+    {
+        public GameObject key;
+        public GameObject gate;
+    }
+    [SerializeField] private List<KeyGatePair> keyGatePairs;
     
 
     public static LevelManager instance;
@@ -45,6 +53,17 @@ public class LevelManager : MonoBehaviour
                 else
                 {
                     buttonGatePairs[i].gate.GetComponent<GateControl>().buttonPressed = false;
+                }
+            }
+        }
+
+        if (keyGatePairs.Count > 0)
+        {
+            for (int i = 0; i < keyGatePairs.Count; i++)
+            {
+                if (keyGatePairs[i].key.gameObject.activeSelf == false)
+                {
+                    keyGatePairs[i].gate.GetComponent<GateControl>().buttonPressed = true;
                 }
             }
         }

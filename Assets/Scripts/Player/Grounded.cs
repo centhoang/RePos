@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Grounded : MonoBehaviour
 {
-    //[SerializeField] private LayerMask PlatformLayer;
     GameObject Player;
 
     private void Awake() 

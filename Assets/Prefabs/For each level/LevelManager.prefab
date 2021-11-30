@@ -49,3 +49,6 @@ MonoBehaviour:
   buttonGatePairs:
   - button: {fileID: 0}
     gate: {fileID: 0}
+  keyGatePairs:
+  - key: {fileID: 0}
+    gate: {fileID: 0}

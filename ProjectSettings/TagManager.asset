@@ -9,7 +9,7 @@ TagManager:
   - Box
   - Gate
   - Button
-  - Grabbable
+  - CircleKey
   layers:
   - Default
   - TransparentFX

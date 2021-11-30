@@ -234,7 +234,7 @@ MonoBehaviour:
   m_GrabDistance: 0.3
   m_BoxMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 51
   m_SpeedScaleDown: 0.8
   recordTime: 5
   isGrounded: 1
