@@ -1,52 +1,52 @@
 fileFormatVersion: 2
-guid: 40c801c836fa48e468fcf0c0902f91a0
+guid: 445bfe1d6f8f7694ea63ecf05b409622
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4808032656941411697
-    second: gate_circle_key_fix2_0
+      213: 3174497990066706767
+    second: gate circle spike_0
   - first:
-      213: 8649813097884094462
-    second: gate_circle_key_fix2_1
+      213: 1089529996002326422
+    second: gate circle spike_1
   - first:
-      213: 6987189815563870084
-    second: gate_circle_key_fix2_2
+      213: 227296822567801166
+    second: gate circle spike_2
   - first:
-      213: -4394912142516963241
-    second: gate_circle_key_fix2_3
+      213: 7514003646809174465
+    second: gate circle spike_3
   - first:
-      213: 5721291225066551376
-    second: gate_circle_key_fix2_4
+      213: -3321600269495103425
+    second: gate circle spike_4
   - first:
-      213: 4095265548755613265
-    second: gate_circle_key_fix2_5
+      213: -7807938258169816445
+    second: gate circle spike_5
   - first:
-      213: 2328344660420246775
-    second: gate_circle_key_fix2_6
+      213: 3081969800705225722
+    second: gate circle spike_6
   - first:
-      213: 1346456402010402722
-    second: gate_circle_key_fix2_7
+      213: 6081256818233953100
+    second: gate circle spike_7
   - first:
-      213: -5255933549583887811
-    second: gate_circle_key_fix2_8
+      213: -7914456390925499918
+    second: gate circle spike_8
   - first:
-      213: 6219044214079562301
-    second: gate_circle_key_fix2_9
+      213: -7989540613204217004
+    second: gate circle spike_9
   - first:
-      213: -3073977981123168684
-    second: gate_circle_key_fix2_10
+      213: 4515073611674713793
+    second: gate circle spike_10
   - first:
-      213: 7940000406149741629
-    second: gate_circle_key_fix2_11
+      213: 4012083599958727159
+    second: gate circle spike_11
   - first:
-      213: -6323799360617594362
-    second: gate_circle_key_fix2_12
+      213: -3331108986810995589
+    second: gate circle spike_12
   - first:
-      213: 4703383961335396413
-    second: gate_circle_key_fix2_13
+      213: 4970944298863377313
+    second: gate circle spike_13
   - first:
-      213: 8378251691446051868
-    second: gate_circle_key_fix2_14
+      213: 7610489182536756813
+    second: gate circle spike_14
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gate_circle_key_fix2_0
+      name: gate circle spike_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17d68793a3099b240800000000000000
-      internalID: 4808032656941411697
+      spriteID: f491e1e4a151e0c20800000000000000
+      internalID: 3174497990066706767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_1
+      name: gate circle spike_1
       rect:
         serializedVersion: 2
         x: 50
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eff07e01f2f4a0870800000000000000
-      internalID: 8649813097884094462
+      spriteID: 697f9df32c9ce1f00800000000000000
+      internalID: 1089529996002326422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_2
+      name: gate circle spike_2
       rect:
         serializedVersion: 2
         x: 100
@@ -192,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48f59e61e1c77f060800000000000000
-      internalID: 6987189815563870084
+      spriteID: e419abf7145872300800000000000000
+      internalID: 227296822567801166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_3
+      name: gate circle spike_3
       rect:
         serializedVersion: 2
         x: 150
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 758b93e01b22203c0800000000000000
-      internalID: -4394912142516963241
+      spriteID: 1c1fc01818a174860800000000000000
+      internalID: 7514003646809174465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_4
+      name: gate circle spike_4
       rect:
         serializedVersion: 2
         x: 200
@@ -234,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 058b6a67e0c166f40800000000000000
-      internalID: 5721291225066551376
+      spriteID: f3017ea472e47e1d0800000000000000
+      internalID: -3321600269495103425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_5
+      name: gate circle spike_5
       rect:
         serializedVersion: 2
         x: 250
@@ -255,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1563976a15e45d830800000000000000
-      internalID: 4095265548755613265
+      spriteID: 38a1b9db581a4a390800000000000000
+      internalID: -7807938258169816445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_6
+      name: gate circle spike_6
       rect:
         serializedVersion: 2
         x: 300
@@ -276,14 +276,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fcb60fe121ff4020800000000000000
-      internalID: 2328344660420246775
+      spriteID: af3348b643b55ca20800000000000000
+      internalID: 3081969800705225722
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_7
+      name: gate circle spike_7
       rect:
         serializedVersion: 2
         x: 350
@@ -297,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2af616bb6f29fa210800000000000000
-      internalID: 1346456402010402722
+      spriteID: c4bc1c63bd6f46450800000000000000
+      internalID: 6081256818233953100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_8
+      name: gate circle spike_8
       rect:
         serializedVersion: 2
         x: 400
@@ -318,14 +318,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d329ef5a84c2f07b0800000000000000
-      internalID: -5255933549583887811
+      spriteID: 2f1c09458d33a2290800000000000000
+      internalID: -7914456390925499918
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_9
+      name: gate circle spike_9
       rect:
         serializedVersion: 2
         x: 450
@@ -339,14 +339,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3229a643cb7e4650800000000000000
-      internalID: 6219044214079562301
+      spriteID: 453f76784237f1190800000000000000
+      internalID: -7989540613204217004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_10
+      name: gate circle spike_10
       rect:
         serializedVersion: 2
         x: 500
@@ -360,14 +360,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 456f7c310590755d0800000000000000
-      internalID: -3073977981123168684
+      spriteID: 1ce7c962783c8ae30800000000000000
+      internalID: 4515073611674713793
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_11
+      name: gate circle spike_11
       rect:
         serializedVersion: 2
         x: 550
@@ -381,14 +381,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3c330d2d4c803e60800000000000000
-      internalID: 7940000406149741629
+      spriteID: 7f9d5b8f6c8cda730800000000000000
+      internalID: 4012083599958727159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_12
+      name: gate circle spike_12
       rect:
         serializedVersion: 2
         x: 600
@@ -402,14 +402,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 602cb878cf95d38a0800000000000000
-      internalID: -6323799360617594362
+      spriteID: b7ce405860685c1d0800000000000000
+      internalID: -3331108986810995589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_13
+      name: gate circle spike_13
       rect:
         serializedVersion: 2
         x: 650
@@ -423,14 +423,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d387aa11bc6c54140800000000000000
-      internalID: 4703383961335396413
+      spriteID: 1ab310ca0875cf440800000000000000
+      internalID: 4970944298863377313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gate_circle_key_fix2_14
+      name: gate circle spike_14
       rect:
         serializedVersion: 2
         x: 700
@@ -444,8 +444,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1425730687854470800000000000000
-      internalID: 8378251691446051868
+      spriteID: d4e6e04e693ed9960800000000000000
+      internalID: 7610489182536756813
       vertices: []
       indices: 
       edges: []

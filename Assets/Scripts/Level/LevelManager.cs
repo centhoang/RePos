@@ -25,6 +25,14 @@ public class LevelManager : MonoBehaviour
         public GameObject gate;
     }
     [SerializeField] private List<KeyGatePair> keyGatePairs;
+
+    [System.Serializable]
+    public class KeySpikesPair 
+    {
+        public GameObject key;
+        public List<GameObject> listOfSpikes;
+    }
+    [SerializeField] private List<KeySpikesPair> keySpikesPairs;
     
 
     public static LevelManager instance;
@@ -64,6 +72,20 @@ public class LevelManager : MonoBehaviour
                 if (keyGatePairs[i].key.gameObject.activeSelf == false)
                 {
                     keyGatePairs[i].gate.GetComponent<GateControl>().buttonPressed = true;
+                }
+            }
+        }
+
+        if (keySpikesPairs.Count > 0)
+        {
+            for (int i = 0; i < keySpikesPairs.Count; i++)
+            {
+                if (keySpikesPairs[i].key.gameObject.activeSelf == false)
+                {
+                    foreach (var spikeHolder in keySpikesPairs[i].listOfSpikes)
+                    {
+                        spikeHolder.transform.GetChild(0).gameObject.SetActive(true);
+                    }
                 }
             }
         }
