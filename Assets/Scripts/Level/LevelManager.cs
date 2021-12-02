@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private CinemachineVirtualCameraBase cam;
 
+    // Button Gate pairs
     [System.Serializable]
     public class ButtonGatePair 
     {
@@ -18,6 +19,7 @@ public class LevelManager : MonoBehaviour
     }
     [SerializeField] private List<ButtonGatePair> buttonGatePairs;
 
+    // Key Gate pairs
     [System.Serializable]
     public class KeyGatePair 
     {
@@ -26,6 +28,7 @@ public class LevelManager : MonoBehaviour
     }
     [SerializeField] private List<KeyGatePair> keyGatePairs;
 
+    // Key Spikes pairs
     [System.Serializable]
     public class KeySpikesPair 
     {
@@ -34,6 +37,14 @@ public class LevelManager : MonoBehaviour
     }
     [SerializeField] private List<KeySpikesPair> keySpikesPairs;
     
+    // Reverse Gates pairs
+    [System.Serializable]
+    public class ReverseGatesPair
+    {
+        public GameObject controlGate;
+        public GameObject controlledGate;
+    }
+    [SerializeField] private List<ReverseGatesPair> ReverseGatesPairs;
 
     public static LevelManager instance;
 
@@ -89,6 +100,13 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
-    }
 
+        if (ReverseGatesPairs.Count > 0)
+        {
+            foreach (var pair in ReverseGatesPairs)
+            {
+                pair.controlledGate.GetComponent<GateControl>().buttonPressed = !pair.controlGate.GetComponent<GateControl>().buttonPressed;
+            }
+        }
+    }
 }

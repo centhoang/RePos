@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3036849144526282165}
   m_Layer: 0
   m_Name: 'Circle Spike Key '
-  m_TagString: Untagged
+  m_TagString: CircleKey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
