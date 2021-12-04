@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {   
@@ -55,8 +56,9 @@ public class LevelManager : MonoBehaviour
 
     public void Respawn()
     {
-        GameObject player = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
-        cam.Follow = player.transform;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // GameObject player = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
+        // cam.Follow = player.transform;
     }
 
     private void FixedUpdate() 

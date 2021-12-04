@@ -13,7 +13,7 @@ public class Grounded : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collider) 
     {
-        if(collider.gameObject.CompareTag("Ground") || collider.gameObject.CompareTag("Box"))
+        if(collider.gameObject.CompareTag("Ground") || collider.gameObject.CompareTag("Box") || collider.gameObject.CompareTag("Gate"))
         {
             Player.GetComponent<PlayerMovement>().isGrounded = true;
         }
@@ -21,7 +21,7 @@ public class Grounded : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider) 
     {
-        if(collider.gameObject.CompareTag("Ground") || collider.gameObject.CompareTag("Box"))
+        if(collider.gameObject.CompareTag("Ground") || collider.gameObject.CompareTag("Box") || collider.gameObject.CompareTag("Gate"))
         {
             Player.GetComponent<PlayerMovement>().isGrounded = false;
         }
