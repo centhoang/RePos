@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
 	[Header("-- ReverPos Skill --")]
 	[SerializeField] private float recordTime = 5f;
 
+	[Header("-- TEST SKILL --")]
+	[SerializeField] GameObject skillPrefab;
+
 	// Other movement's variables
     [HideInInspector] public bool isGrounded = true;                            // Whether or not the player is grounded.
 	private float originRunSpeed = 40f;
@@ -68,6 +71,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (Input.GetButtonDown("Push-Pull"))
+		{
+			Instantiate(skillPrefab);
+			Debug.Log("innitiate skill");
+		}
+
 		if (!disableInput)
 		{
 			// Input skill
