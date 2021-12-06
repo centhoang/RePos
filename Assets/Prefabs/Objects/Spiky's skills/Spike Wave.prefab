@@ -3779,7 +3779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43472aa0061a21e44b34e02f5ecb548c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSpikeDelayInSec: 0.03
+  nextSpikeDelay: 0.05
   destroyObjDelay: 1
 --- !u!1 &4862361302536597325
 GameObject:

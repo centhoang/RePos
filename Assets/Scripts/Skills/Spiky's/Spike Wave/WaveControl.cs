@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveControl : MonoBehaviour
 {
-    [SerializeField] private float nextSpikeDelayInSec = 0.3f;
+    [SerializeField] private float nextSpikeDelay = 0.3f;
     [SerializeField] private float destroyObjDelay = 1f;
     private List<GameObject> spikeList;
 
@@ -27,7 +27,7 @@ public class WaveControl : MonoBehaviour
         foreach (var spike in spikeList)
         {
             spike.gameObject.SetActive(true);
-            yield return new WaitForSeconds(nextSpikeDelayInSec);
+            yield return new WaitForSeconds(nextSpikeDelay);
         }
 
         yield return new WaitForSeconds(destroyObjDelay);

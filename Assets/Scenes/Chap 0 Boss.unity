@@ -26898,7 +26898,7 @@ PrefabInstance:
     - target: {fileID: 7077883075901703719, guid: 38e2caf90878d714db12d4586a1a8a66, type: 3}
       propertyPath: skillPrefab
       value: 
-      objectReference: {fileID: 4862361302167726892, guid: 01c3b70e20c2d0446a0046b9112c809e, type: 3}
+      objectReference: {fileID: 5183652414848371748, guid: 2f7a0842aa0043641a6bc9573f515e39, type: 3}
     - target: {fileID: 8452608080885030419, guid: 38e2caf90878d714db12d4586a1a8a66, type: 3}
       propertyPath: m_RootOrder
       value: 7
