@@ -5,6 +5,9 @@
 /[Bb]uilds/
 /Assets/AssetStoreTools*
 
+# Custom
+*.log
+
 # Visual Studio cache directory
 .vs/
 
