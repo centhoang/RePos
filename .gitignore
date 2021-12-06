@@ -6,7 +6,7 @@
 /Assets/AssetStoreTools*
 
 # Custom
-Logs/.log
+*.log
 
 # Visual Studio cache directory
 .vs/
