@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSpikeDelay: 1
-  destroyObjDelay: 6
+  destroyObjDelay: 10
 --- !u!1001 &8711322874910725885
 PrefabInstance:
   m_ObjectHideFlags: 0

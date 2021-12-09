@@ -10,10 +10,16 @@ public class SpikyControl : MonoBehaviour
     [SerializeField] private float speed = 30f;
     [Space]
     [SerializeField] private Transform positionUsingWave;
+    [SerializeField] private int numberOfWave = 5;
+    [SerializeField] private float delayBetweenEachWave = 2f;
     [SerializeField] private float timeWaitForWave = 3f;
     [SerializeField] private Transform positionUsingCeiling;
     [SerializeField] private float timeWaitForCeiling = 10f;
     [SerializeField] private Transform positionUsingFence;
+    [SerializeField] private int numberOfFence = 2;
+    [SerializeField] private float delayBetweenEachFence = 5f;
+    [SerializeField] private Transform posSpawnFenceUnder;
+    [SerializeField] private Transform posSpawnFenceUpper;
     [SerializeField] private float timeWaitForFence = 7f;
     [SerializeField] private Transform positionUsingForest;
     [SerializeField] private float timeWaitForForest = 12f;
@@ -32,6 +38,7 @@ public class SpikyControl : MonoBehaviour
     private float waitTimer;
     private int stageOrder = 1;
     private bool allowToMove = true;
+    private bool usedSkill = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,93 +52,121 @@ public class SpikyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            startBattle = true;
+        }
     }
 
     private void FixedUpdate() 
     {
         if (startBattle)
         {
-            while (true)
+            if (stageOrder == 1)
             {
-                if (stageOrder == 1)
+                if (allowToMove)
                 {
-                    if (allowToMove)
-                    {
-                        MoveToPosition(positionUsingWave);
-                    }
-                    
-                    if (rb.position == target)
-                    {
-                        allowToMove = false;
+                    MoveToPosition(positionUsingWave);
+                }
+                
+                if (rb.position == target)
+                {
+                    allowToMove = false;
 
-                        waitTimer -= Time.fixedDeltaTime;
-                        if (waitTimer <= 0)
-                        {
-                            stageOrder++;
-                            waitTimer = timeWaitForCeiling;
-                            allowToMove = true;
-                        }
+                    if (!usedSkill)
+                    {
+                        StartCoroutine(SpawnSpikeWave());
+                        usedSkill = true;
+                    }
+
+                    waitTimer -= Time.fixedDeltaTime;
+                    if (waitTimer <= 0)
+                    {
+                        stageOrder++;
+                        waitTimer = timeWaitForCeiling;
+                        allowToMove = true;
+                        usedSkill = false;
                     }
                 }
-                else if (stageOrder == 2)
+            }
+            else if (stageOrder == 2)
+            {
+                if (allowToMove)
                 {
-                    if (allowToMove)
-                    {
-                        MoveToPosition(positionUsingCeiling);
-                    }
-                    
-                    if (rb.position == target)
-                    {
-                        allowToMove = false;
+                    MoveToPosition(positionUsingCeiling);
+                }
+                
+                if (rb.position == target)
+                {
+                    allowToMove = false;
 
-                        waitTimer -= Time.fixedDeltaTime;
-                        if (waitTimer <= 0)
-                        {
-                            stageOrder++;
-                            waitTimer = timeWaitForFence;
-                            allowToMove = true;
-                        }
+                    if (!usedSkill)
+                    {
+                        Instantiate(ceilingSpike);
+                        usedSkill = true;
+                    }
+
+                    waitTimer -= Time.fixedDeltaTime;
+                    if (waitTimer <= 0)
+                    {
+                        stageOrder++;
+                        waitTimer = timeWaitForFence;
+                        allowToMove = true;
+                        usedSkill = false;
                     }
                 }
-                else if (stageOrder == 3)
+            }
+            else if (stageOrder == 3)
+            {
+                if (allowToMove)
                 {
-                    if (allowToMove)
-                    {
-                        MoveToPosition(positionUsingFence);
-                    }
-                    
-                    if (rb.position == target)
-                    {
-                        allowToMove = false;
+                    MoveToPosition(positionUsingFence);
+                }
+                
+                if (rb.position == target)
+                {
+                    allowToMove = false;
 
-                        waitTimer -= Time.fixedDeltaTime;
-                        if (waitTimer <= 0)
-                        {
-                            stageOrder++;
-                            waitTimer = timeWaitForForest;
-                            allowToMove = true;
-                        }
+                    if (!usedSkill)
+                    {
+                        StartCoroutine(SpawnSpikeFence());
+                        usedSkill = true;
+                    }
+
+                    waitTimer -= Time.fixedDeltaTime;
+                    if (waitTimer <= 0)
+                    {
+                        stageOrder++;
+                        waitTimer = timeWaitForForest;
+                        allowToMove = true;
+                        usedSkill = false;
                     }
                 }
-                else if (stageOrder == 4)
+            }
+            else if (stageOrder == 4)
+            {
+                if (allowToMove)
                 {
-                    if (allowToMove)
-                    {
-                        MoveToPosition(positionUsingFence);
-                    }
-                    
-                    if (rb.position == target)
-                    {
-                        allowToMove = false;
+                    MoveToPosition(positionUsingForest);
+                }
+                
+                if (rb.position == target)
+                {
+                    allowToMove = false;
 
-                        waitTimer -= Time.fixedDeltaTime;
-                        if (waitTimer <= 0)
-                        {
-                            stageOrder = 1;
-                            waitTimer = timeWaitForWave;
-                            allowToMove = true;
-                        }
+                    if (!usedSkill)
+                    {
+                        Instantiate(theForest);
+                        usedSkill = true;
+                    }
+
+                    waitTimer -= Time.fixedDeltaTime;
+                    if (waitTimer <= 0)
+                    {
+                        stageOrder = 1;
+                        waitTimer = timeWaitForWave;
+                        allowToMove = true;
+                        usedSkill = false;
                     }
                 }
             }
@@ -143,5 +178,33 @@ public class SpikyControl : MonoBehaviour
         target = new Vector2 (newTransform.position.x, newTransform.position.y);
         newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
         rb.MovePosition(newPos);
+    }
+
+    IEnumerator SpawnSpikeWave()
+    {
+        for (int i = 0; i < numberOfWave; i++)
+        {
+            Instantiate(spikeWave);
+            yield return new WaitForSeconds(delayBetweenEachWave);
+        }
+    }
+
+    IEnumerator SpawnSpikeFence()
+    {
+        for (int i = 0; i < numberOfFence; i++)
+        {
+            if (i%2 != 0)
+            {
+                Vector2 posSpawn = new Vector2(posSpawnFenceUpper.position.x, posSpawnFenceUpper.position.y);
+                Instantiate(spikeFence, posSpawn, Quaternion.identity);
+            }
+            else
+            {
+                Vector2 posSpawn = new Vector2(posSpawnFenceUnder.position.x, posSpawnFenceUnder.position.y);
+                Instantiate(spikeFence, posSpawn, Quaternion.identity);
+            }
+
+            yield return new WaitForSeconds(delayBetweenEachFence);
+        }
     }
 }
