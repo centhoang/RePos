@@ -71,11 +71,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetButtonDown("Push-Pull"))
-		{
-			Instantiate(skillPrefab);
-			Debug.Log("innitiate skill");
-		}
+		// if (Input.GetButtonDown("Push-Pull"))
+		// {
+		// 	Instantiate(skillPrefab);
+		// 	Debug.Log("innitiate skill");
+		// }
 
 		if (!disableInput)
 		{
